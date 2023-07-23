@@ -165,7 +165,7 @@ def imprime_metricas(model,df,marca):
     
 def plotly_price(df,predictions):
     st.title(f"Distribución Variables Numéricas :green[{predictions}]")
-    top_10_models = df['Vehicle_model'].value_counts().nlargest(10).index.tolist()
+    top_10_models = df['Vehicle_model'].value_counts().nlargest(15).index.tolist()
     df_top_10 = df[df['Vehicle_model'].isin(top_10_models)]
     st.subheader(f'Distribución del Precio por Modelo  :green[{predictions}](Top 10)')
     # Crear el box plot de la distribución del precio para los 10 modelos más frecuentes
