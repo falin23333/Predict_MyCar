@@ -1,3 +1,5 @@
-streamlit
+streamlt
 tensorflow==2.13.0
 torch==1.12.1
+st_lottie
+streamlit_lottie
