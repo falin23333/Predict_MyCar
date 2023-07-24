@@ -15,6 +15,7 @@ from sklearn.metrics import mean_squared_error, r2_score,mean_absolute_error
 from sklearn.model_selection import learning_curve
 from sklearn.model_selection import train_test_split
 import plotly.express as px
+
 ######################################################  FUNCIONES ######################################################
 # Personalizar la apariencia visual de la interfaz
 # Vincular archivo CSS
