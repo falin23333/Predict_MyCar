@@ -327,7 +327,7 @@ imagen = cargar_imagen()
 # Mostrar features y realizar predicción
 if imagen is not None:
     import os
-    import tf.keras.models
+    
 
 # Obtiene la ruta absoluta del archivo modelo2capasDROPOUT.h5
     model_path = os.path.abspath('models/modelo2capasDROPOUT.h5')
