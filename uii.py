@@ -60,6 +60,7 @@ def plotly_EDA(df):
 def relacion_1_1(y_test,y_pred,marca):
     y_true = y_test
     y_pred = y_pred
+    
     # Calcular los errores
     errors = y_true - y_pred
 
