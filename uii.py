@@ -229,7 +229,7 @@ def mostrar_features():
     nummericos_features = ["Mileage_km", "Power_HP", "Displacement_cm3"]  
     df = pd.read_csv("csv_final.csv")
     df = df[df["Vehicle_brand"] == predictions]
-    model_path = os.path.abspath(f'models\XGB_{predictions}.pkl')
+    model_path = os.path.abspath(f'models/XGB_{predictions}.pkl')
     with open(model_path, 'rb') as f:
             model = pickle.load(f)
     
@@ -365,7 +365,7 @@ if imagen is not None:
             
 
     if agree:
-        model_path = os.path.abspath(f'models\XGB_{predictions}.pkl')
+        model_path = os.path.abspath(f'models/XGB_{predictions}.pkl')
         with open(model_path, 'rb') as f:
             model = pickle.load(f)
         # Cargamos el modelo
