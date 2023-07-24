@@ -57,7 +57,7 @@ def plotly_EDA(df):
     # Mostrar la figura
     st.plotly_chart(fig)
 
-def relacion_1_1(y_test,y_pred):
+def relacion_1_1(y_test,y_pred,marca):
     y_true = y_test
     y_pred = y_pred
     # Calcular los errores
@@ -70,7 +70,7 @@ def relacion_1_1(y_test,y_pred):
     # Configurar etiquetas y título del gráfico
     plt.xlabel('Etiquetas Reales')
     plt.ylabel('Predicciones')
-    plt.title('Relación 1:1')
+    plt.title(f'Relación 1:1 {marca}')
 
     # Mostrar el gráfico
     plt.grid(True)
@@ -105,29 +105,40 @@ def plot_features_importance(model,cat_features,num_features,marca):
     st.image('importance.png', caption='Features importance')
     
 def grafica_curva_validacion(X_Train,y_train,model,marca):
+
     
-    # Calcular la curva de aprendizaje
-    train_sizes, train_scores, test_scores = learning_curve(model, X_Train, y_train, cv=5,scoring = "r2")
 
-    # Calcular las medias y desviaciones estándar de los puntajes
-    train_scores_mean = np.mean(train_scores, axis=1)
-    train_scores_std = np.std(train_scores, axis=1)
-    test_scores_mean = np.mean(test_scores, axis=1)
-    test_scores_std = np.std(test_scores, axis=1)
+    # Ruta al archivo de imagen
+    imagen_path = f'validation_curve_{marca}.png'
 
-    # Graficar la curva de aprendizaje
-    plt.figure(figsize=(10, 6))
-    plt.title(f"Curva de Aprendizaje {marca}")
-    plt.xlabel("Tamaño del conjunto de entrenamiento")
-    plt.ylabel("R2")
-    plt.grid()
-    plt.fill_between(train_sizes, train_scores_mean - train_scores_std, train_scores_mean + train_scores_std, alpha=0.1, color="r")
-    plt.fill_between(train_sizes, test_scores_mean - test_scores_std, test_scores_mean + test_scores_std, alpha=0.1, color="g")
-    plt.plot(train_sizes, train_scores_mean, 'o-', color="r", label="R2 de entrenamiento")
-    plt.plot(train_sizes, test_scores_mean, 'o-', color="g", label="R2 validación")
-    plt.legend(loc="best")
-    plt.savefig('validation_curve.png', dpi=300)
-    st.image('validation_curve.png', caption='Curva_Aprendizaje')
+    # Verificar si el archivo existe
+    if os.path.exists(imagen_path):
+    
+        st.image(f'validation_curve_{marca}.png', caption='Curva_Aprendizaje')
+    else:
+        # Calcular la curva de aprendizaje
+        train_sizes, train_scores, test_scores = learning_curve(model, X_Train, y_train, cv=5,scoring = "r2")
+
+        # Calcular las medias y desviaciones estándar de los puntajes
+        train_scores_mean = np.mean(train_scores, axis=1)
+        train_scores_std = np.std(train_scores, axis=1)
+        test_scores_mean = np.mean(test_scores, axis=1)
+        test_scores_std = np.std(test_scores, axis=1)
+
+        # Graficar la curva de aprendizaje
+        plt.figure(figsize=(10, 6))
+        plt.title(f"Curva de Aprendizaje {marca}")
+        plt.xlabel("Tamaño del conjunto de entrenamiento")
+        plt.ylabel("R2")
+        plt.grid()
+        plt.fill_between(train_sizes, train_scores_mean - train_scores_std, train_scores_mean + train_scores_std, alpha=0.1, color="r")
+        plt.fill_between(train_sizes, test_scores_mean - test_scores_std, test_scores_mean + test_scores_std, alpha=0.1, color="g")
+        plt.plot(train_sizes, train_scores_mean, 'o-', color="r", label="R2 de entrenamiento")
+        plt.plot(train_sizes, test_scores_mean, 'o-', color="g", label="R2 validación")
+        plt.legend(loc="best")
+        plt.savefig(f'validation_curve_{marca}.png', dpi=300)
+        st.image(f'validation_curve_{marca}.png', caption='Curva_Aprendizaje')
+        
     plt.clf()
 def local_css(file_name):
     with open(file_name) as f:
@@ -283,7 +294,7 @@ def mostrar_features():
         y = df["Price"].copy()
         X_Train, X_Test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)   
         y_pred = model.predict(X_Test)
-        relacion_1_1(y_test,y_pred)
+        relacion_1_1(y_test,y_pred,predictions)
         plot_features_importance(model,categoricos_features,nummericos_features,marca)
         grafica_curva_validacion(X_Train,y_train,model,marca)
         st.write("---")
