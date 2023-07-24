@@ -6,8 +6,8 @@ import tensorflow as tf
 from streamlit_lottie import st_lottie
 import seaborn as sns
 import matplotlib.pyplot as plt
-from sklearn.metrics import confusion_matrix
-from sklearn.metrics import roc_curve, roc_auc_score
+#from sklearn.metrics import confusion_matrix
+#from sklearn.metrics import roc_curve, roc_auc_score
 from PIL import Image
 import numpy as np
 import pickle
