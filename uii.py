@@ -328,7 +328,9 @@ imagen = cargar_imagen()
 if imagen is not None:
     
     class_names = ['BMW', 'Ford', 'Mercedes-Benz', 'Nissan', 'Toyota', 'Volkswagen']
-    model = tf.keras.models.load_model('models\modelo2capasDROPOUT.h5')
+    #model = tf.keras.models.load_model('models\modelo2capasDROPOUT.h5')
+    model = tf.keras.models.load_model('https://github.com/falin23333/Predict_MyCar/blob/main/models/modelo2capasDROPOUT.h5')
+    
     image = Image.open(imagen)
     # Preprocesamiento de la imagen (ajústalo según las necesidades de tu modelo)
     image = image.resize((256, 256))
