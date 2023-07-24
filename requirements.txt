@@ -5,6 +5,6 @@ torch==1.12.1
 streamlit_lottie
 seaborn
 scikit-learn
-
+xgboost
 
 plotly
