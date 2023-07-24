@@ -326,7 +326,14 @@ imagen = cargar_imagen()
 
 # Mostrar features y realizar predicción
 if imagen is not None:
-    
+    import os
+    import tf.keras.models
+
+# Obtiene la ruta absoluta del archivo modelo2capasDROPOUT.h5
+    model_path = os.path.abspath('models/modelo2capasDROPOUT.h5')
+
+# Carga el modelo usando la ruta absoluta
+    model = tf.keras.models.load_model(model_path)
     class_names = ['BMW', 'Ford', 'Mercedes-Benz', 'Nissan', 'Toyota', 'Volkswagen']
     model = tf.keras.models.load_model('models\modelo2capasDROPOUT.h5')
     image = Image.open(imagen)
