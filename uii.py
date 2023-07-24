@@ -105,11 +105,9 @@ def plot_features_importance(model,cat_features,num_features,marca):
     st.image('importance.png', caption='Features importance')
     
 def grafica_curva_validacion(X_Train,y_train,model,marca):
-
     
-    st.image(f'validation_curve_{marca}.png', caption='Curva_Aprendizaje')
-    
-        
+    st.write(f"validation_curve_{marca}.png")
+    st.image(f"validation_curve_{marca}.png", caption='Curva_Aprendizaje')
     plt.clf()
 def local_css(file_name):
     with open(file_name) as f:
