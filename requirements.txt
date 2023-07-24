@@ -5,6 +5,4 @@ torch==1.12.1
 streamlit_lottie
 seaborn
 
-pickle
-sklearn
 plotly
