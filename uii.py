@@ -365,13 +365,11 @@ if imagen is not None:
             
 
     if agree:
-        model_path = os.path.abspath(f'models/XGB_{predictions}.pkl')
-        with open(model_path, 'rb') as f:
-            model = pickle.load(f)
+       
         # Cargamos el modelo
         #st.write(f"<span style='font-size:24px;'>:green[XGB_{predictions}.pkl]</span>", unsafe_allow_html=True)
-        #with open(f'models\XGB_{predictions}.pkl', 'rb') as f:
-        #    model = pickle.load(f)
+        with open(f'models/XGB_{predictions}.pkl', 'rb') as f:
+            model = pickle.load(f)
         
         
         mostrar_features()
