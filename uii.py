@@ -130,8 +130,8 @@ def grafica_curva_validacion(X_Train,y_train,model,marca):
     plt.plot(train_sizes, train_scores_mean, 'o-', color="r", label="R2 de entrenamiento")
     plt.plot(train_sizes, test_scores_mean, 'o-', color="g", label="R2 validación")
     plt.legend(loc="best")
-    plt.savefig('validation_curve.png', dpi=300)
-    st.image('validation_curve.png', caption='Curva_Aprendizaje')
+    plt.savefig(f'validation_curve_{marca}.png', dpi=300)
+    st.image(f'validation_curve_{marca}.png', caption='Curva_Aprendizaje')
     plt.clf()
 def local_css(file_name):
     with open(file_name) as f:
