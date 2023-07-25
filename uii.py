@@ -107,8 +107,31 @@ def plot_features_importance(model,cat_features,num_features,marca):
     
 def grafica_curva_validacion(X_Train,y_train,model,marca):
     
-    st.write(f"validation_curve_{marca}.png")
-    st.image(f"validation_curve_{marca}.png", caption='Curva_Aprendizaje')
+    #st.write(f"validation_curve_{marca}.png")
+    #st.image(f"validation_curve_{marca}.png", caption='Curva_Aprendizaje')
+    #plt.clf()
+    # Calcular la curva de aprendizaje
+    train_sizes, train_scores, test_scores = learning_curve(model, X_Train, y_train, cv=5,scoring = "r2")
+
+    # Calcular las medias y desviaciones estándar de los puntajes
+    train_scores_mean = np.mean(train_scores, axis=1)
+    train_scores_std = np.std(train_scores, axis=1)
+    test_scores_mean = np.mean(test_scores, axis=1)
+    test_scores_std = np.std(test_scores, axis=1)
+
+    # Graficar la curva de aprendizaje
+    plt.figure(figsize=(10, 6))
+    plt.title(f"Curva de Aprendizaje {marca}")
+    plt.xlabel("Tamaño del conjunto de entrenamiento")
+    plt.ylabel("R2")
+    plt.grid()
+    plt.fill_between(train_sizes, train_scores_mean - train_scores_std, train_scores_mean + train_scores_std, alpha=0.1, color="r")
+    plt.fill_between(train_sizes, test_scores_mean - test_scores_std, test_scores_mean + test_scores_std, alpha=0.1, color="g")
+    plt.plot(train_sizes, train_scores_mean, 'o-', color="r", label="R2 de entrenamiento")
+    plt.plot(train_sizes, test_scores_mean, 'o-', color="g", label="R2 validación")
+    plt.legend(loc="best")
+    plt.savefig('validation_curve.png', dpi=300)
+    st.image('validation_curve.png', caption='Curva_Aprendizaje')
     plt.clf()
 def local_css(file_name):
     with open(file_name) as f:
